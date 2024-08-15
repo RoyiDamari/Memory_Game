@@ -145,7 +145,7 @@ class MemoryGame:
         if choice:
             self.enable_buttons();  # Re-enable the buttons if the player chooses to continue
         else:
-            self.root.quit();  # Exit the game if the player presses "Exit"
+            self.root.quit();  # quit the game
 
     def disable_buttons(self) -> None:
         """Disable all buttons in the grid."""
@@ -165,7 +165,7 @@ class MemoryGame:
         if play_again:
             self.reset_game();
         else:
-            self.root.quit();  # Destroy the grid frame to completely remove it
+            self.root.quit();  # quit the game
 
     def reset_game(self) -> None:
         """Reset the game to play again."""
