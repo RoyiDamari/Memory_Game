@@ -134,9 +134,7 @@ class MemoryGame:
 
     def clear_message(self) -> None:
         """Clear the message label."""
-        if self.message_label.winfo_exists():
-            self.message_label.config(text="");
-
+        self.message_label.config(text="");
         # Prompt the user again to choose cards or exit
         self.prompt_choice_or_exit();
 
@@ -147,12 +145,13 @@ class MemoryGame:
         if choice:
             self.enable_buttons();  # Re-enable the buttons if the player chooses to continue
         else:
-            self.root.destroy();  # Exit the game if the player presses "Exit"
+            self.root.quit();  # Exit the game if the player presses "Exit"
 
     def disable_buttons(self) -> None:
         """Disable all buttons in the grid."""
         for button in self.buttons:
-            button.config(state="disabled");
+            if button.winfo_exists():  # Ensure the button still exists
+                button.config(state="disabled");
 
     def enable_buttons(self) -> None:
         """Enable all buttons in the grid."""
@@ -166,7 +165,7 @@ class MemoryGame:
         if play_again:
             self.reset_game();
         else:
-            self.root.destroy();  # Destroy the grid frame to completely remove it
+            self.root.quit();  # Destroy the grid frame to completely remove it
 
     def reset_game(self) -> None:
         """Reset the game to play again."""
